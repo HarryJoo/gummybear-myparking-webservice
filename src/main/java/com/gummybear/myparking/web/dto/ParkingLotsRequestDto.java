@@ -56,7 +56,7 @@ public class ParkingLotsRequestDto {
 	
 	private String holidayClosingHour;
 	
-	private String parkingFeeInfomation;
+	private String parkingFeeInformation;
 	
 	private int basicParkingTime;
 	
@@ -97,7 +97,7 @@ public class ParkingLotsRequestDto {
 			String parkingLotSection, String parkingLotType, String roadNameAddress, String numberNameAddress, String parkingCompartment,
 			String feedDivision, String alternateDayNoDrivingDivision, String operatingDay, String weekdayOpeningHour,
 			String weekdayClosingHour, String saturdayOpeningHour, String saturdayClosingHour, String holidayOpeningHour,
-			String holidayClosingHour, String parkingFeeInfomation, int basicParkingTime, int basicParkingFee,
+			String holidayClosingHour, String parkingFeeInformation, int basicParkingTime, int basicParkingFee,
 			String additionalParkingFee, String additionalUnitTime, String dayParkingFeeApplicationTime, String dayParkingFee,  
 			String monthlyFee, String paymentMethod, String remarks, String managementAgencyName, String managementAgencyPhoneNumber, String latitude, 
 			String longitude, String referenceDate, String institudeCode, String institudeName) {
@@ -117,7 +117,7 @@ public class ParkingLotsRequestDto {
 		this.saturdayClosingHour = saturdayClosingHour;
 		this.holidayOpeningHour = holidayOpeningHour;
 		this.holidayClosingHour = holidayClosingHour;
-		this.parkingFeeInfomation = parkingFeeInfomation;
+		this.parkingFeeInformation = parkingFeeInformation;
 		this.basicParkingTime = basicParkingTime;
 		this.basicParkingFee = basicParkingFee;
 		this.additionalParkingFee = additionalParkingFee;
@@ -153,7 +153,7 @@ public class ParkingLotsRequestDto {
 				.saturdayClosingHour(saturdayClosingHour)
 				.holidayOpeningHour(holidayOpeningHour)
 				.holidayClosingHour(holidayClosingHour)
-				.parkingFeeInfomation(parkingFeeInfomation)
+				.parkingFeeInformation(parkingFeeInformation)
 				.basicParkingTime(basicParkingTime)
 				.basicParkingFee(basicParkingFee)
 				.additionalParkingFee(additionalParkingFee)
@@ -170,11 +170,5 @@ public class ParkingLotsRequestDto {
 				.institudeName(institudeName)
 				.build();
 	}
-	
-	@Builder
-	public ParkingLotsRequestDto(String parkingLotNo, String parkingLotNm) {
-		this.parkingLotNo = parkingLotNo;
-		this.parkingLotNm = parkingLotNm;
-	}
-	
+
 }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.gummybear.myparking.config.auth.LoginUser;
 import com.gummybear.myparking.config.auth.dto.SessionUser;
 import com.gummybear.myparking.service.ParkingLotsService;
 import com.gummybear.myparking.service.UserService;
@@ -23,9 +24,9 @@ public class IndexController {
 	private final HttpSession httpSession;
 	
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index(Model model, @LoginUser SessionUser user) {
 		//model.addAttribute("user", userService.findAllDesc());
-		SessionUser user = (SessionUser) httpSession.getAttribute("user");
+		
 		if(user != null) {
 			model.addAttribute("userName", user.getName());
 			model.addAttribute("userRole", user.getRole());

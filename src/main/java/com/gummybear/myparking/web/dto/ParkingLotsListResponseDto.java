@@ -34,7 +34,7 @@ public class ParkingLotsListResponseDto {
 	private String saturdayClosingHour;
 	private String holidayOpeningHour;
 	private String holidayClosingHour;
-	private String parkingFeeInfomation;
+	private String parkingFeeInformation;
 	private int basicParkingTime;
 	private int basicParkingFee;
 	private String additionalUnitTime;
@@ -72,7 +72,7 @@ public class ParkingLotsListResponseDto {
 		this.saturdayClosingHour = entity.getSaturdayClosingHour();
 		this.holidayOpeningHour = entity.getHolidayOpeningHour();
 		this.holidayClosingHour = entity.getHolidayClosingHour();
-		this.parkingFeeInfomation = entity.getParkingFeeInfomation();
+		this.parkingFeeInformation = entity.getParkingFeeInformation();
 		this.basicParkingTime = entity.getBasicParkingTime();
 		this.basicParkingFee = entity.getBasicParkingFee();
 		this.additionalParkingFee = entity.getAdditionalParkingFee();

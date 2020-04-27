@@ -57,7 +57,7 @@ public class ParkingLots {
 	
 	private String holidayClosingHour;
 	
-	private String parkingFeeInfomation;
+	private String parkingFeeInformation;
 	
 	private int basicParkingTime;
 	
@@ -98,7 +98,7 @@ public class ParkingLots {
 			String parkingLotSection, String parkingLotType, String roadNameAddress, String numberNameAddress, String parkingCompartment,
 			String feedDivision, String alternateDayNoDrivingDivision, String operatingDay, String weekdayOpeningHour,
 			String weekdayClosingHour, String saturdayOpeningHour, String saturdayClosingHour, String holidayOpeningHour,
-			String holidayClosingHour, String parkingFeeInfomation, int basicParkingTime, int basicParkingFee,
+			String holidayClosingHour, String parkingFeeInformation, int basicParkingTime, int basicParkingFee,
 			String additionalParkingFee, String additionalUnitTime, String dayParkingFeeApplicationTime, String dayParkingFee, 
 			String monthlyFee, String paymentMethod, String remarks, String managementAgencyName, String managementAgencyPhoneNumber, String latitude, 
 			String longitude, String referenceDate, String institudeCode, String institudeName) {
@@ -118,7 +118,7 @@ public class ParkingLots {
 		this.saturdayClosingHour = saturdayClosingHour;
 		this.holidayOpeningHour = holidayOpeningHour;
 		this.holidayClosingHour = holidayClosingHour;
-		this.parkingFeeInfomation = parkingFeeInfomation;
+		this.parkingFeeInformation = parkingFeeInformation;
 		this.basicParkingTime = basicParkingTime;
 		this.basicParkingFee = basicParkingFee;
 		this.additionalParkingFee = additionalParkingFee;
@@ -154,7 +154,7 @@ public class ParkingLots {
 		this.saturdayClosingHour = dto.getSaturdayClosingHour();
 		this.holidayOpeningHour = dto.getHolidayOpeningHour();
 		this.holidayClosingHour = dto.getHolidayClosingHour();
-		this.parkingFeeInfomation = dto.getParkingFeeInfomation();
+		this.parkingFeeInformation = dto.getParkingFeeInformation();
 		this.basicParkingTime = dto.getBasicParkingFee();
 		this.basicParkingFee = dto.getBasicParkingFee();
 		this.additionalParkingFee = dto.getAdditionalParkingFee();

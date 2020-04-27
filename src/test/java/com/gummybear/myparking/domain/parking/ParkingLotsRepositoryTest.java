@@ -44,7 +44,7 @@ public class ParkingLotsRepositoryTest {
 		String saturdayClosingHour = "00:00:00";
 		String holidayOpeningHour = "00:00:00";
 		String holidayClosingHour = "00:00:00";
-		String parkingFeeInfomation = "0";
+		String parkingFeeInformation = "0";
 		int basicParkingTime = 0;
 		int basicParkingFee = 200;
 		String additionalUnitTime = "";
@@ -78,7 +78,7 @@ public class ParkingLotsRepositoryTest {
 											.saturdayClosingHour(saturdayClosingHour)
 											.holidayOpeningHour(holidayOpeningHour)
 											.holidayClosingHour(holidayClosingHour)
-											.parkingFeeInfomation(parkingFeeInfomation)
+											.parkingFeeInformation(parkingFeeInformation)
 											.basicParkingTime(basicParkingTime)
 											.basicParkingFee(basicParkingFee)
 											.additionalParkingFee(additionalParkingFee)

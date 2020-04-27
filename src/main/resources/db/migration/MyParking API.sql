@@ -18,7 +18,7 @@ CREATE TABLE  parking_lots  (
 	 saturday_closing_hour 	time	NOT NULL,
 	 holiday_opening_hour 	time	NOT NULL,
 	 holiday_closing_hour 	time	NOT NULL,
-	 parking_fee_infomation 	varchar(255)	NOT NULL,
+	 parking_fee_information 	varchar(255)	NOT NULL,
 	 basic_parking_time 	bigint	NOT NULL,
 	 basic_parking_fee 	bigint	NOT NULL,
 	 additional_unit_time 	varchar(255)	NOT NULL	DEFAULT 0,
@@ -36,3 +36,5 @@ CREATE TABLE  parking_lots  (
 	 institude_code 	varchar(255)	NOT NULL,
 	 institude_name 	text	NOT NULL
 );
+
+ALTER TABLE parking_lots CHANGE parking_fee_infomation parking_fee_information varchar(255);
