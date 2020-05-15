@@ -38,7 +38,7 @@ public class IndexController {
 	// 주차장 데이터 등록 화면
 	@GetMapping("/parking-lots/register")
 	public String parkingLotsRegister() {
-		return "/parking-lots/parking-lots-register";
+		return "parking-lots/parking-lots-register";
 	}
 	
 	// 인덱스 페이지 > 주차장 목록 조회
@@ -46,7 +46,7 @@ public class IndexController {
 	public String parkingLotsView(Model model) {
 		model.addAttribute("parkingLots", parkingLotsService.findParkingLotList());
 		
-		return "/parking-lots/parking-lots-view";
+		return "parking-lots/parking-lots-view";
 	}
 	
 	// 인덱스 페이지 > 주차장 목록 조회 > 수정 화면 호출
@@ -55,13 +55,13 @@ public class IndexController {
 		ParkingLotsResponseDto dto = parkingLotsService.findById(id);
 		model.addAttribute("parkingLots", dto);
 		
-		return "/parking-lots/parking-lots-update";
+		return "parking-lots/parking-lots-update";
 	}
 	
 	// 사용자 데이터 등록
 	@GetMapping("/users/register")
 	public String usersRegister() {
-		return "/users/users-register";
+		return "users/users-register";
 	}
 	
 	@GetMapping("/home")
