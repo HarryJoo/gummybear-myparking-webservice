@@ -1,26 +1,34 @@
 package com.gummybear.myparking.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gummybear.myparking.domain.parking.ParkingLots;
 import com.gummybear.myparking.domain.parking.ParkingLotsRepository;
 import com.gummybear.myparking.web.dto.ParkingLotsRequestDto;
 import com.gummybear.myparking.web.dto.ParkingLotsUpdateRequestDto;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -34,7 +42,17 @@ public class ParkingLotsAPIControllerTest {
 	
 	@Autowired
 	private ParkingLotsRepository parkingLotsRepository;
-	
+
+	@Autowired
+	private WebApplicationContext context;
+
+	private MockMvc mvc;
+
+	@Before
+	public void setup() {
+		mvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()).build();
+	}
+
 	@After
 	public void tearDown() throws Exception {
 		parkingLotsRepository.deleteAll();
@@ -42,9 +60,10 @@ public class ParkingLotsAPIControllerTest {
 	
 	// 주차장 데이터 등록 테스트 메서드
 	@Test
+	@WithMockUser(roles="USER")
 	public void registerParkingLots() throws Exception {
 		//given data
-		String parkingLotNo = "391-2-999999";
+		String parkingLotNo = "391-2-000001";
 		String parkingLotNm = "테스트주차장";
 		String parkingLotSection = "공영";
 		String parkingLotType = "노외";
@@ -110,12 +129,14 @@ public class ParkingLotsAPIControllerTest {
 											.institudeCode(institudeCode)
 											.institudeName(institudeName)
 											.build();
-		
+
+
 		String url = "http://localhost:" + port + "/api/v1/parking-lots";
-		
+
+		/*
 		//when
 		ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
-		
+
 		//then
 		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(responseEntity.getBody()).isGreaterThan(0L);
@@ -123,12 +144,22 @@ public class ParkingLotsAPIControllerTest {
 		List<ParkingLots> all = parkingLotsRepository.findAll();
 		assertThat(all.get(0).getParkingLotNo()).isEqualTo(parkingLotNo);
 		assertThat(all.get(0).getParkingLotNm()).isEqualTo(parkingLotNm);
-		
-		
+		*/
+
+		//when
+		mvc.perform(post(url).contentType(MediaType.APPLICATION_JSON_UTF8)
+							.content(new ObjectMapper().writeValueAsString(requestDto)))
+							.andExpect(status().isOk());
+
+		//then
+		List<ParkingLots> allParkingLots = parkingLotsRepository.findAll();
+		assertThat(allParkingLots.get(0).getParkingLotNo()).isEqualTo(parkingLotNo);
+		assertThat(allParkingLots.get(0).getParkingLotNm()).isEqualTo(parkingLotNm);
 	}
-	
+
 	// 주차장 데이터 수정 테스트 메서드
 	//@Test
+	//@WithMockUser(roles="USER")
 	public void updateParkingLots() throws Exception {
 		//given
 		String parkingLotNo = "391-2-000001";
@@ -208,7 +239,8 @@ public class ParkingLotsAPIControllerTest {
 											.build();
 		
 		String url = "http://localhost:" + port + "/api/v1/parking-lots/" + updateId;
-		
+
+		/*
 		HttpEntity<ParkingLotsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 		
 		//when
@@ -218,9 +250,21 @@ public class ParkingLotsAPIControllerTest {
 		//then
 		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(responseEntity.getBody()).isGreaterThan(0L);
-		
+		*/
+
 		List<ParkingLots> all = parkingLotsRepository.findAll();
 		assertThat(all.get(0).getParkingLotNo()).isEqualTo(expectedParkingLotNo);
 		assertThat(all.get(0).getParkingLotNm()).isEqualTo(expectedParkingLotNm);
+
+		//when
+		mvc.perform(post(url).contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(new ObjectMapper().writeValueAsString(requestDto)))
+				.andExpect(status().isOk());
+
+		//then
+		List<ParkingLots> allParkingLots = parkingLotsRepository.findAll();
+		assertThat(allParkingLots.get(0).getParkingLotNo()).isEqualTo(parkingLotNo);
+		assertThat(allParkingLots.get(0).getParkingLotNm()).isEqualTo(parkingLotNm);
 	}
+
 }
